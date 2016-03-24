@@ -1,10 +1,10 @@
 var app = angular.module('confusionApp',[]);
 
 app.controller('dishDetailController', function($scope) {
-
+    var rawgit = "https://cdn.rawgit.com/timoweave/angular_class/master/conFusion/";
     var dish={
         name:'Uthapizza',
-        image: 'images/uthapizza.png',
+        image: rawgit + "app/" + 'images/uthapizza.png',
         category: 'mains',
         label:'Hot',
         price:'4.99',
@@ -46,5 +46,6 @@ app.controller('dishDetailController', function($scope) {
 
     $scope.dish = dish;
     $scope.dishSortCriteria = "";
+    $scope.dishRawGit = rawgit;
 });
 
