@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="confusionApp">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head
+             content must come *after* these tags -->
+        <title>Ristorante Con Fusion: Menu</title>
+        <!-- Bootstrap -->
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css" rel="stylesheet"/>
+        
+        <link href="styles/mystyles.css" rel="stylesheet">
+        <!--link href="https://rawgit.com/.../styles/mystyles.css" rel="stylesheet"-->
+        
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
+    </head>
+
+    <body>
+        <div ng-cloak ng-controller="dishDetailController" >
+            <div class="container">
+
+                <div class="row row-content">
+                    <div class="col-xs-12">
+                        
+                        <div class="media">
+                            <div class="media-left">
+                                <a href=""><img class="media-object img-thumbnail img-responsive"
+                                                alt="" ng-src="{{dish.image}}"/>
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">
+                                    {{dish.name}}
+                                    <span ng-if="dish.label" class="label label-danger label-xs">
+                                        {{dish.label}}
+                                    </span>
+                                    
+                                    <span ng-if="dish.label">
+                                        &nbsp;                                    
+                                    </span>
+                                    
+                                    <span class="badge">
+                                        {{dish.price}}
+                                    </span>
+                                </h3>
+                                <p>
+                                    {{dish.description}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="col-xs-9 col-xs-offset-1">
+                        <h4>Customer Comments
+                            <small>
+                                <label for="sort_field"> Sort by:
+                                    <input id="sort_field" type="text" ng-model="dishSortCriteria"/>
+                                </label>
+                            </small>
+                        </h4>
+                        <ul class="media-list">
+                            <li class="media" ng-repeat="comment in dish.comments | orderBy : dishSortCriteria">
+                                <div class="media-body">
+                                    <blockquote>
+                                        <h5 class="media-heading">
+                                            {{comment.rating}} Stars
+                                        </h5>
+                                        <p>
+                                            {{comment.comment}}
+                                        </p>
+                                        <h5><small>
+                                                <span>{{comment.author}}</span>,
+                                                <span>{{comment.date | date:'mediumDate'}}</span>
+                                            </small>
+                                        </h5>
+                                    </blockquote>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
+            <script src="scripts/dishdetail.js"></script>
+            <!--script src="https://rawgit.com/.../scripts/dishdetail.js"></script-->
+        </div>
+    </body>
+
+</html>
