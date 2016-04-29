@@ -1,0 +1,27 @@
+{
+  "name": "ng_forms",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Timothy Shiu <timoweave@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/timoweave/angular_class",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap": "^3.3.6",
+    "bootstrap-social": "^4.12.0",
+    "angular": "^1.5.3",
+    "font-awesome": "^4.5.0"
+  }
+}

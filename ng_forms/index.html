@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Document</title>
+        
+    </head>
+    
+    <body ng-app="formApp">
+
+        <div ng-controller="formCtrl" ng-cloak>
+            <form ng-submit="soda.check()" novalidate>
+                <label for="sodaPicker">List of Soda Avaliable: </label>
+                <select name="sodaPicker"
+                        ng-model="soda.picked"
+                        ng-options="drink.label for drink in soda.list track by drink.value"
+                        id="sodaPicker" >
+                </select>
+                <label for="sodaCounter">Quantity
+                    <input name="sodaCounter" type="text" ng-model="soda.count"/>
+                </label>
+                <button type="submit">Submit</button>
+            </form>
+            <!--
+            <p>{{sodaPicked}}</p>
+            -->
+        </div>
+
+        <div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.min.js"></script>
+
+            <script src="index.js"></script>
+        </div>
+    </body>
+</html>
