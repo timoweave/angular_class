@@ -48,5 +48,33 @@ app.controller('dishDetailController', function($scope) {
     $scope.dish = dish;
     $scope.dishSortCriteria = "";
     $scope.dishRawGit = rawgit;
+
+    $scope.get_comments = function() { return dish.comments; };
+    $scope.feedback_buffer = reset_feedback();
+
+    $scope.submit_feedback = function() {
+        var timestamp = new Date().toISOString();        
+        var feedback = $scope.feedback_buffer;
+        feedback.date = timestamp;
+        console.log(feedback);
+        console.log(dish.comments.length);
+        dish.comments.push(feedback);
+        console.log(dish.comments.length);
+
+        $scope.feedback_buffer = reset_feedback();
+        $scope.feedback_form.$setPristine();
+
+        if ($scope.debug) {
+            for (i in dish.comments) {
+                console.log(dish.comments[i]);
+            }
+        }
+    };
+
+    
+    function reset_feedback(feedback) {
+        return { rating : 5, comment : "", author : "", date : null};
+    };
+
 });
 
