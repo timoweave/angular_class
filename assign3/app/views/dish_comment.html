@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-9 col-xs-offset-1">
+
+            <div ng-controller="DishCommentController">
+
+                <h4>Customer Comments
+                    <small>
+                        <label for="sort_field"> Sort by:
+                            <input id="sort_field" type="text" ng-model="dishSortCriteria"/>
+                        </label>
+                    </small>
+                </h4>
+
+                <ul class="media-list">
+                    <li class="media" ng-repeat="comment in dishes[tab].comments | orderBy : dishSortCriteria">
+                        <div class="media-body">
+                            <blockquote>
+                                <h5 class="media-heading">
+                                    {{comment.rating}} Stars
+                                </h5>
+                                <p>
+                                    {{comment.comment}}
+                                </p>
+                                <h5><small>
+                                        <span>{{comment.author}}</span>,
+                                        <span>{{comment.date | date:'mediumDate'}}</span>
+                                    </small>
+                                </h5>
+                            </blockquote>
+                        </div>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>

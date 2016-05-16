@@ -1,0 +1,30 @@
+<div class="row row-content">
+    <!-- promotion dish -->
+    <div class="media" >
+        <div class="media-left">
+            <a href=""><img class="media-object img-thumbnail img-responsive"
+                            alt="" ng-src="{{promo.image}}"/>
+            </a>
+        </div>
+        <div class="media-body">
+            <h3 class="media-heading">
+                {{promo.name}}
+                <span ng-if="promo.label" class="label label-danger label-xs">
+                    {{promo.label}}
+                </span>
+                
+                <span ng-if="promo.label">
+                    &nbsp;                                    
+                </span>
+                
+                <span class="badge">
+                    {{promo.price}}
+                </span>
+            </h3>
+            <p>
+                {{promo.description}}
+            </p>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+{
+  "name": "assign3",
+  "description": "",
+  "main": "used by itself only",
+  "authors": [
+    "Timothy Shiu <timoweave@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/timoweave/angular_class",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.3",
+    "bootstrap-social": "^5.0.0"
+  },
+  "devDependencies": {
+    "angular-ui-router": "^0.2.18",
+    "font-awesome": "^4.6.3"
+  }
+}
