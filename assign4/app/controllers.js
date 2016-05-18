@@ -70,7 +70,8 @@ angular.module('confusionApp')
                     return {"value" : itm, "label" : itm };
                 });
 
-            $scope.sendFeedback = function() {
+        $scope.sendFeedback = function() {
+                $scope.feedback.date = new Date().toISOString();
                 console.log("submit data : " + $scope.feedback);
                 // alert(JSON.stringify($scope.feedback));
                 feedback.save($scope.feedback);
