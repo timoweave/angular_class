@@ -14,7 +14,7 @@ angular class
 4. 4th assign (branch assign2, sub-directory assign4)
    % git clone -b assign2 https://github.com/timoweave/angular_class.git
    % cd angular_class
-   % assign4
+   % cd assign4
    % npm install
    % npm run bower -- install   
    % npm run simplehttpserver &
