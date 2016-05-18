@@ -1,0 +1,20 @@
+<div ng-controller="AboutController">
+
+    <!-- leader.html -->
+
+    <ul class="media-list">
+
+        <li class="media" ng-repeat="leader in leaders">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object" ng-src="{{leader.image}}" alt="picture">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{leader.name}} <small>{{leader.designation}}</small></h4>
+                <p>{{leader.description}}</p>
+            </div>
+        </li>
+        
+    </ul>
+</div>

@@ -1,0 +1,235 @@
+<div class="container">
+
+    <div ng-if="debug" style="background-color: yellow;">
+        {{feedback}}
+    </div>
+
+    <h2>Send us your Feedback</h2>
+
+    <form 
+          novalidate
+          name="feedback_form"
+          class="form-horizontal"
+          ng-model="feedback"
+          ng-submit="sendFeedback()">
+        
+        <fieldset class="form-group"
+                  ng-class="{'has-error' 
+                            : feedback_form.first_name.$error.required 
+                            && !feedback_form.first_name.$pristine}">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="first_name"
+                           class="form-control-label">
+                        First Name
+                    </label>
+                </div>
+                <div class="col-sm-10">
+                    <input name="first_name"
+                           type="text"
+                           placeholder="Enter First Name"
+                           required
+                           class="form-control"
+                           ng-model="feedback.name.first">
+                    <span ng-show="!feedback_form.first_name.$pristine
+                                   && feedback_form.first_name.$error.required"
+                          class="help-block">
+                        Your First Name is required
+                    </span>
+                </div>
+            </div>            
+        </fieldset>
+        
+        <fieldset class="form-group"
+                  ng-class="{'has-error' 
+                            : feedback_form.last_name.$error.required 
+                            && !feedback_form.last_name.$pristine}">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="last_name"
+                           class="form-control-label">
+                        Last Name
+                    </label>
+                </div>
+                <div class="col-sm-10">
+                    <input name="last_name"
+                           type="text"
+                           placeholder="Enter Last Name"                   
+                           class="form-control"
+                           ng-model="feedback.name.last"
+                           required>
+                    <span ng-show="!feedback_form.last_name.$pristine 
+                                   && feedback_form.last_name.$error.required"
+                          class="help-block">
+                        Your Last Name is required
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="tel_entry"
+                           class="form-control-label">
+                        Contact Tel.
+                    </label>
+                </div>
+                <div class="col-xs-5 col-sm-4 col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">(</span>
+                        <input name="tel_area"
+                               type="tel"
+                               class="form-control"
+                               placeholder="Area Code"
+                               ng-model="feedback.contact.tel_area"
+                               required>
+                        <span  ng-show="!feedback_form.tel_area.$pristine 
+                                        && feedback_form.tel_area.$error.required"
+                               class="help-block">
+                            Your Area Code is required
+                        </span>
+                        
+                        <span class="input-group-addon">)</span>
+                        
+                    </div>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-7">
+                    <input name="tel_no"
+                           type="tel"
+                           class="form-control"
+                           placeholder="Telephone number"
+                           ng-model="feedback.contact.tel_number"
+                           required>
+                    <!-- 
+                    <span ng-show="!feedback_form.tel_no.$pristine 
+                          && feedback_form.tel_no.$error.required"
+                          class="help-block">
+                        Your Telephone Number is required
+                    </span>
+
+                    -->
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error' 
+                            : feedback_form.email_address.$error.required 
+                            && !feedback_form.email_address.$pristine}">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="email_address"
+                           class="form-control-label">
+                        Email
+                    </label>                    
+                </div>
+                <div class="col-sm-10">
+                    <input name="email_address"
+                           type="email"
+                           placeholder="Enter Email"                   
+                           class="form-control"
+                           ng-model="feedback.contact.email"
+                           required>
+                    <span ng-show="feedback_form.email_address.$invalid
+                                   && !feedback_form.email_address.$pristine"
+                          class="glyphicon glyphicon-remove form-control-feedback"
+                          aria-hidden="true">
+                    </span>
+                    <span ng-show="(feedback_form.email_address.$error.required
+                                   || feedback_form.email_address.$invalid) 
+                                   && !feedback_form.email_address.$pristine"
+                          class="help-block">
+                        Your Email Address is required
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+        
+        <fieldset class="form-group"
+                  ng-class="{ 'has-error' 
+                            : feedback_form.permission 
+                            && !feedback_form.method}">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label class="form-control-label">
+                        &nbsp;
+                    </label>                    
+                </div>
+                <div class="col-sm-3">
+                    <label class="checkbox checkbox-inline">
+                        <input name="permission"
+                               type="checkbox"
+                               ng-model="feedback.contact.permission">
+                        <strong>May we contact you?</strong>
+                    </label>
+                </div>
+
+                <div class="col-sm-4 col-sm-offset-1"
+                     ng-class="{ 'has-error' 
+                               : feedback_form.permission 
+                               && !feedback.contact.permission_method}"
+                     ng-show="feedback.contact.permission">
+                    <select name="method"
+                            class="form-control"
+                            ng-model="feedback.contact.permission_method"
+                            ng-options="m.value as m.label for m in feedback_method_list">
+                        <option value="">Select Telephone or Email</option>
+                    </select>
+                    <span ng-show="feedback_form.permission 
+                                   && !feedback.contact.permission_method"
+                          class="help-block">
+                        select one contact method from above
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group"
+                  ng-class="{'has-error' 
+                            : feedback_form.comment_content.$error.required 
+                            && !feedback_form.comment_content.$pristine}">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label for="comment_content"
+                           class="form-control-label">
+                        Your Feedback
+                    </label>
+                </div>
+                <div class="col-sm-10">
+                    <textarea name="comment_content"
+                              class="form-control"
+                              cols="40"
+                              rows="6"
+                              ng-model="feedback.comment"
+                              required>
+                        <span ng-show="!feedback_form.comment_content.$pristine 
+                                       && feedback_form.comment_content.$error.required"
+                              class="help-block">
+                            Your Comment is required
+                        </span>
+                    </textarea>
+                </div>
+            </div>
+            
+        </fieldset>
+
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col-sm-2">
+                    <label class="form-control-label">
+                    </label>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit"
+                            class="form-control btn btn-primary"
+                            ng-disabled="feedback_form.$invalid">
+                        Send Feedback
+                    </button>
+                </div>
+            </div>
+            
+
+       </fieldset>
+    </form>
+</div>

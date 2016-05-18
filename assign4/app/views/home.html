@@ -1,0 +1,68 @@
+<div>
+
+    <!-- assign3/app/views/ -->
+    <confusion-jumbo></confusion-jumbo>
+
+    
+    <div class="container">
+
+        <!-- dishs detail -->
+        <div class="row row-content" style="padding-top: 100px;">
+
+            <div class="col-xs-12 col-sm-9 vertical-align-top">
+                <!-- implement the detail dish here -->
+                <!--p style="padding:20px;"></p-->
+                <div ng-repeat="dish in dishes">
+                    <confusion-dish-detail dish="dish"></confusion-dish-detail>
+                </div>
+            </div>
+                
+            <div class="col-xs-12 col-sm-3 vertical-align-top">
+                <!--p style="padding:20px;"></p-->
+                <h3 align=center>Our Lipsmacking Culinary Creations</h3>
+            </div>
+            
+        </div>
+
+        <!-- feature dish -->
+        <div class="row row-content" style="padding-top: 100px;">
+            
+            <div class="col-xs-12 col-sm-9 vertical-align-top">
+		<!--h4>Implement the Featured Dish Here</h4-->
+                <confusion-dish-detail dish="dishes[1]"></confusion-dish-detail>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 vertical-align-top">
+                <!--p style="padding:20px;"></p-->
+                <h3 align=center>Featured Dish</h3>
+            </div>
+            
+        </div>
+
+        <!-- promotion -->
+        <div class="row row-content" style="padding-top:100px;">
+            <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+                <h3 align=center>This Month's Promotions</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+		<!--h4>Implement the Promotion Here</h4-->
+                <confusion-dish-promotion promo="promotion"></confusion-dish-promotion>
+            </div>
+        </div>
+
+        <!-- executive chef -->
+        <div class="row row-content" style="padding-top: 100px; padding-bottom:100px;">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Meet our Culinary Specialists</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+		<!-- h4>Implement the Executive Chef Info Here</h4--> 
+                <confusion-chef chef="chef"></confusion-chef>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
