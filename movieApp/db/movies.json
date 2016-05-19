@@ -1,0 +1,10 @@
+{
+    "movies" : [
+        { "id" : 0, "release" : 2011, "title": "Eye in the Sky", "director" : "Gavin Hood", "genre" : "" },
+        { "id" : 1, "release" : 2015, "title": "Captain America : Civil War", "director" : "Anthony Russo", "genre" : "" },
+        { "id" : 2, "release" : 2015, "title": "Angry Birds", "director" : "Clay Kaytis", "genre" : "" },
+        { "id" : 3, "release" : 2016, "title": "Money Monster", "director" : "Jodie Foster", "genre" : "" },
+        { "id" : 4, "release" : 2016, "title": "Maggie's Plan", "director" : "Rebecca Miller", "genre" : "" },        
+        { "id" : 5, "release" : 2016, "title": "Neighbors 2: Sorority Rising", "director" : "Nicholas Stoller", "genre" : "" }
+    ]
+}

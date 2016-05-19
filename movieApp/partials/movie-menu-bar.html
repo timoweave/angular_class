@@ -1,0 +1,23 @@
+<div ng-controller="MovieMenuBarController" ng-cloak>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="containr-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand"
+                   style="color:teal; font-weight:bold;"
+                   ui-sref="{{menu.brand.state}}">
+                    {{menu.brand.label}}
+                </a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav nav">
+                    <li ng-repeat="item in menu.items">
+                        <a ui-sref="{{item.state}}">
+                            {{item.label}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

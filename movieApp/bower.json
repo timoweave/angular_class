@@ -1,0 +1,25 @@
+{
+  "name": "movieApp",
+  "description": "",
+  "main": "\"\"",
+  "authors": [
+    "Timothy Shiu <timoweave@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/timoweave/angular_class",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-social": "^5.0.0",
+    "angular-resource": "^1.5.5",
+    "angular-ui-router": "^0.3.0"      
+  },
+  "devDependencies": {
+
+  }
+}

@@ -1,0 +1,52 @@
+<div class="container">
+    <!-- args = [title, movie] -->
+    <div class="row top-buffer">
+        <div class="col-xs-1">
+        </div>
+
+        <div class="col-xs-8">
+            <table class="table movie-table">
+                <tr>
+                    <th style="font-size:1.25em;">{{title}}
+                    </th>
+                    <th style="text-align: right;">
+                        <a data-toggle="tooltip"
+                           data-placement="bottom"
+                           title="refresh movie info"
+                           ui-sref="listMovies"
+                           style="color:lightgrey;font-size:1.25em;text-decoration: none;"
+                           class="glyphicon glyphicon-repeat"></a>
+                        <span> </span>                        
+                        <a data-toggle="tooltip"
+                           data-placement="bottom"
+                           title="view movie info"
+                           ui-sref="createMovie"
+                           style="color:lightseagreen;font-size:1.25em;text-decoration: none;"
+                           class="glyphicon glyphicon-plus-sign"></a>
+                    </th>
+                </tr>
+                <tr ng-repeat="movie in movies">
+                    <td>
+                        {{movie.title}}
+                    </td>
+                    <td style="text-align: right;">
+                        <a data-toggle="tooltip"
+                           data-placement="bottom"
+                           title="view movie info"
+                           class="glyphicon glyphicon-th-list"
+                           style="color:lightgrey;font-size:1.25em;text-decoration:none;"
+                           ui-sref="viewMovie({id:movie.id})"></a>
+                        <span> </span>
+                        <a data-toggle="tooltip"
+                           data-placement="bottom"
+                           title="remove movie info"
+                           class="glyphicon glyphicon-remove-circle"
+                           style="color:crimson;font-size:1.25em;text-decoration:none;"                                               ui-sref="deleteMovie({id:movie.id})"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xs-1">
+        </div>
+    </div>
+</div>

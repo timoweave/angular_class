@@ -1,0 +1,27 @@
+{
+  "name": "movieApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bower": "bower",
+    "clean-backup": "find . -ipath '*~' -ipath '*#*#' -exec rm -f {} \\;",
+    "simple-server": "python -m SimpleHTTPServer",
+    "http-server": "http-server",
+    "movies-server": "json-server --watch db/movies.json",
+    "express-server": "node js/express-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "http-server": "^0.9.0",
+    "json-server": "^0.8.14"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4"
+  }
+}

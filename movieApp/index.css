@@ -1,0 +1,20 @@
+.movie-table {
+    font-size : 1em;
+}
+
+.form-control-edit-style {
+    border-radius:0px;
+    background:transparent;
+}
+
+.form-control-add-style {
+    border-radius:0px;
+    background:transparent;
+}
+
+.form-control-view-style {
+    border-radius:0px;
+    border-style:none;
+    border-width:0px;
+    background:transparent;
+}
