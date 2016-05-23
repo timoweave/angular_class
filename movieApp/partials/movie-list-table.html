@@ -14,14 +14,15 @@
                            data-placement="bottom"
                            title="refresh movie info"
                            ui-sref="listMovies"
-                           style="color:lightgrey;font-size:1.25em;text-decoration: none;"
+                           style="font-size:1.25em;text-decoration:none;color:lightgrey;"
                            class="glyphicon glyphicon-repeat"></a>
-                        <span> </span>                        
+                    </th>
+                    <th style="text-align: right;">
                         <a data-toggle="tooltip"
                            data-placement="bottom"
                            title="view movie info"
                            ui-sref="createMovie"
-                           style="color:lightseagreen;font-size:1.25em;text-decoration: none;"
+                           style="font-size:1.25em;text-decoration:none;color:lightseagreen;"
                            class="glyphicon glyphicon-plus-sign"></a>
                     </th>
                 </tr>
@@ -34,14 +35,16 @@
                            data-placement="bottom"
                            title="view movie info"
                            class="glyphicon glyphicon-th-list"
-                           style="color:lightgrey;font-size:1.25em;text-decoration:none;"
+                           style="font-size:1.25em;text-decoration:none;color:lightgrey;"
                            ui-sref="viewMovie({id:movie.id})"></a>
-                        <span> </span>
+                    </td>
+                    <td style="text-align: right;">
                         <a data-toggle="tooltip"
                            data-placement="bottom"
                            title="remove movie info"
                            class="glyphicon glyphicon-remove-circle"
-                           style="color:crimson;font-size:1.25em;text-decoration:none;"                                               ui-sref="deleteMovie({id:movie.id})"></a>
+                           style="font-size:1.25em;text-decoration:none;color:crimson;"
+                           ng-click="deleteMovie(movie)"></a>
                     </td>
                 </tr>
             </table>

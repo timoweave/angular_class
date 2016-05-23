@@ -1,8 +1,86 @@
-<div class="container">
-    <div class="jumbotron">
-        <div ng-controller="MovieCreateController">
-            <movie-form movie="movie">
-            </movie-form>
-        </div>
+<div>
+
+    <!--movie-form movie="movie" submit_function="addMovie()" submit_label="Save"-->
+    <!--/movie-form-->
+
+    <div class="row top-buffer">
+
+        <form action=""
+              role="form"
+              ng-submit="addMovie(movie)"
+              class="form-horizontal">
+
+            <!-- title -->
+            <div class="form-group row">
+                <label for="title_id"
+                       class="control-label col-xs-12 col-sm-2">Title</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="text"
+                           class="form-control "
+                           ng-class="movie_form_style"
+                           id="title_id"
+                           placeholder="Movie Title Here"
+                           ng-model="movie.title">
+                </div>
+            </div>
+
+            <!-- release -->
+            <div class="form-group row">
+                <label for="release_id"
+                       class="control-label col-xs-12 col-sm-2">Release</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="number"
+                           class="form-control"
+                           ng-class="movie_form_style"                   
+                           id="release_id"
+                           placeholder="Year"
+                           ng-model="movie.release">
+                </div>
+            </div>
+
+            <!-- director -->
+            <div class="form-group row">
+                <label for="director_id"
+                       class="control-label col-xs-12 col-sm-2">Director(s)</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           ng-class="movie_form_style"
+                           id="director_id"
+                           placeholder="Name(s)"
+                           ng-model="movie.director">
+                </div>
+            </div>
+            
+            <!-- movie genre -->
+            <div class="form-group row">
+                <label for="genre_id"
+                       class="control-label col-xs-12 col-sm-2">Movie Genre</label>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="text"
+                           class="form-control"
+                           ng-class="movie_form_style"
+                           id="genre_id"
+                           placeholder="Types"
+                           ng-model="movie.genre">
+                </div>
+            </div>
+
+            <!-- create -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <input type="submit"
+                           value="Save New Movie"
+                           class="btn btn-primary">
+                    </input>
+                </div>
+            </div>
+
+        </form>
+
     </div>
+
+
 </div>

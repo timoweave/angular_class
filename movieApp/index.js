@@ -1,8 +1,42 @@
 var app = angular.module("MovieApp", ["ngResource", "ui.router"]);
 
-app.constant("MOVIES_JSON", "http://localhost:3000/movies");
+app.directive("movieMenuBar", function () {
+    console.log("movie menu bar directive");    
+    return {
+        restrict : "E",
+        templateUrl : "partials/movie-menu-bar.html"
+    }
+});
+
+app.constant("movieConfig", {
+    "host": "http://localhost:3000"
+});
+
+app.factory("Movies", ["$resource", "movieConfig", function($resource, movieConfig) {
+    console.log("movie data factory");
+    return $resource(movieConfig.host + "/movies" + "/:id",
+                     {id : "@id"},
+                     {update : { method : 'PUT'}});
+    
+}]);
+
+app.directive("movieForm", function () {
+    console.log("movie form directive");
+    return {
+        restrict : 'E',
+        scope : { movie : "=movie",
+                  submit_function : "&submit",
+                  submit_label : "=label"},
+        templateUrl : "partials/movie-form.html",
+        controller : function($scope) {
+            // $scope.submit_label = "hello";
+            // $scope.sbumit_function = function() { console.log("hello"); };
+        }
+    }
+});
 
 app.config(function($stateProvider) {
+    // console.log("state ui-router config");
     $stateProvider
         .state('createMovie', { //state for createing a new movie
             url: '/movies/create',
@@ -11,7 +45,7 @@ app.config(function($stateProvider) {
         })
         .state('listMovies', { // state for showing all movies
             url: '/movies',
-            templateUrl: 'partials/movie-list.html',
+            templateUrl: 'partials/movie-list-table.html',
             controller: 'MovieListController'
         })
         .state('viewMovie', { //state for showing single movie
@@ -36,11 +70,12 @@ app.config(function($stateProvider) {
 });
 
 app.run(function($state) {
+    console.log("run the 1st state");
     $state.go('createMovie');
 });
 
-app.controller("MovieListController", ["$scope", "$resource", "Movies",
-                                       function($scope, $resource, Movies) {
+app.controller("MovieListController", ["$scope", "$resource", "Movies", function($scope, $resource, Movies) {
+    console.log("read the movie list controller");                                           
     $scope.title = "All Movies";
     $scope.message = "loading movies...";
     $scope.movies = Movies.query().$promise.then(
@@ -52,80 +87,88 @@ app.controller("MovieListController", ["$scope", "$resource", "Movies",
             $scope.message = "error " + response.status;
         }
     );
-}]);
 
-app.controller("MovieViewController", ["$scope", "$resource", "Movies", "$stateParams",
-                                       function($scope, $resource, Movies, $stateParams) {
-    $scope.movie_form_style = "'form-control-view-style'";
-    $scope.movie = Movies.get({ id: $stateParams.id });
+    $scope.deleteMovie = function(movie) {
+        console.log( " delete movie id " + movie.id + " title " +  movie.title);
 
-    $scope.submit_label = "none";
-    $scope.submit_function = function none() {};
-}]);
+        var movie_gonna = Movies.get({ id: movie.id }, function() {
+            console.log(" movie gonna ", movie_gonna);
+            // $scope.entry is fetched from server and is an instance of Entry
 
-app.controller("MovieCreateController", ["$scope", "$resource", "Movies",
-                                         function($scope, $resource, Movies) {
-    function addMovie() {
-        $scope.movie.$save(function() {
-            $state.go('listMovies');
+            movie_gonna.$delete(function() {
+                //gone forever!
+            });
         });
     };
-
-    $scope.movie_form_style = "'form-control-add-style'";    
-    $scope.movie = new Movies();
-                                             
-    $scope.submit_label = "Create";
-    $scope.submit_function = addMovie;
-                                             
+    
+        
 }]);
 
-app.controller("MovieEditController", ["$scope", "$resource", "Movies", "$stateParams", "$state",
-                                       function($scope, $resource, Movies, $stateParams, $state) {
-   function updateMovie () {
-       $scope.movie.$update(function() {
-           $state.go('listMovies');
+app.controller("MovieViewController", ["$scope", "$resource", "Movies", "$stateParams", "$state", function($scope, $resource, Movies, $stateParams, $state) {
+    console.log("read the movie list controller");
+
+    $scope.updateMovie = function(movie) {
+        Movies.update(movie, function() {
+            console.log("update movie");
+            $state.go('listMovies');
        });
-   };
- 
-   $scope.movie_form_style = "'form-control-edit-style'";
-   $scope.movie = Movies.get({ id: $stateParams.id });
+    };
+    // $scope.movie_form_style = "'form-control-view-style'";
+    $scope.movie = Movies.get({ id: $stateParams.id }, function() {
+        
+    });
+    
+    $scope.submit_label = "none";
+    $scope.submit_function = function none() {};
+    $scope.editMovie = function(move) {
+        console.log("edit movie " + $stateParams.id);
+    };
+}]);
 
-   $scope.submit_label = "Save";
-   $scope.submit_function = updateMovie;
+app.controller("MovieCreateController", ["$scope", "$resource", "$state", "Movies", function($scope, $resource, $state, Movies) {
+    console.log("create the movie list controller");
 
+    $scope.addMovie = function(movie) {
+
+        console.log("add movie");
+        Movies.save(movie, function() {
+            console.log("added movie");
+            $scope.movie = new Movies();
+            $state.go('listMovies');
+        });        
+    };
+
+    // $scope.movie_form_style = "'form-control-add-style'";
+    $scope.movie = new Movies();
+}]);
+
+app.controller("MovieEditController", ["$scope", "$resource", "Movies", "$stateParams", "$state", function($scope, $resource, Movies, $stateParams, $state) {
+
+    console.log("edit movie");
+    $scope.updateMovie = function (movie) {
+        Movies.update(movie, function() {
+            console.log("update movie");
+            $state.go('listMovies');
+       });
+    };
+    
+    // $scope.movie_form_style = "'form-control-edit-style'";
+    $scope.movie = Movies.get({ id: $stateParams.id });
+    
+    $scope.submit_label = "Save";
+    $scope.submit_function = updateMovie;
+    
 }]);
 
 app.controller("MovieMenuBarController", ["$scope", function($scope) {
+    console.log("movie menu bar at the top");
     $scope.menu = {
         brand : { label : "tiny app", state : "listMovies" },
         items : [ { label : "Movies", state : "listMovies" },
                   { label : "About", state : "about" },
                   { label : "Contact", state : "contact" }
-        ]
+                ]
     };
-
-}]);
-
-app.directive("movieForm", function () {
-    return {
-        restrict : 'E',
-        scope : { movie : "=movie",
-                  submit : "=submit" },
-        templateUrl : "partials/movie-form.html"
-    }
-});
-
-app.directive("movieMenuBar", function () {
-    return {
-        restrict : "E",
-        templateUrl : "partials/movie-menu-bar.html"
-    }
-});
-
-app.factory("Movies", ["$resource", "MOVIES_JSON", function($resource, MOVIES_JSON) {
-
-    return $resource(MOVIES_JSON + "/:id",
-                     {id : "@_id"},
-                     {update : { method : 'PUT'}});
     
 }]);
+

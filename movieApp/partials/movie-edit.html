@@ -1,8 +1,4 @@
-<div class="container">
-    <div class="jumbotron">
-        <div ng-controller="MovieEditController">
-            <movie-form movie="movie">
-            </movie-form>
-        </div>
-    </div>
+<div ng-controller="MovieEditController">
+    <movie-form movie="movie" submit_function="updateMovie()" submit_label="Update">
+    </movie-form>
 </div>
